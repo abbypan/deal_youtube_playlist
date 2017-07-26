@@ -26,6 +26,6 @@
     https://foo.xxx.com/data/video.m3u
     https://foo.xxx.com/data/video.html
 
-此时，本地可使用浏览器访问 https://foo.xxx.com/data/video.html，或者用vlc访问 https://foo.xxx.com/data/video.m3u
+此时，本地可使用浏览器访问 https://foo.xxx.com/data/video.html ，或者用vlc访问 https://foo.xxx.com/data/video.m3u
 
 示例文件: [video.html](data/video.html), [video.m3u](data/video.m3u)
