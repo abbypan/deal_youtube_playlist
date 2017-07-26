@@ -1,0 +1,2 @@
+# youtube_playlist_to_vlc
+批量下载youtube播放列表内容，并生成vlc播放列表
