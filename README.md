@@ -14,8 +14,9 @@
 
 待处理的youtube播放列表为： 新白娘子傳奇唱段合集 https://www.youtube.com/playlist?list=PLF861C755FB66AC6A
 
-假设用vps将视频下载到data子目录
+## 用vps将视频下载到data子目录，用于在线观看
 
+    #远程VPS
     $ cd /var/www/html
     $ mkdir data
     $ cd data
@@ -29,3 +30,10 @@
 此时，本地可使用浏览器访问 https://foo.xxx.com/data/video.html ，或者用vlc访问 https://foo.xxx.com/data/video.m3u
 
 示例文件: [video.html](data/video.html), [video.m3u](data/video.m3u)
+
+## 下载视频到本地PC 
+
+    #本地PC
+    $ wget https://foo.xxx.com/data/video.m3u
+    $ cat video.m3u | xargs wget
+
