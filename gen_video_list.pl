@@ -4,6 +4,7 @@ use File::Slurp qw/slurp write_file/;
 my ($web_path, $mp4_path)  = @ARGV;
 $web_path=~s#/$##;
 
+system(qq[find "$mp4_path" -name '*.mp4' -exec rename 's/\\s+/-/g' {} \\;]);
 system(qq[find "$mp4_path" -name '*.mp4' | sort | sed -e 's#^#$web_path/#' > "$mp4_path/video.m3u"]);
 
 print "$web_path/$mp4_path/video.m3u\n";
