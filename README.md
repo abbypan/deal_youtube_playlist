@@ -37,3 +37,14 @@
     $ wget https://foo.xxx.com/data/video.m3u
     $ cat video.m3u | xargs wget
 
+## 按顺序单文件下载列表中所有视频到本地
+
+假设在远程 foo.xxx.com 的 /var/www/html 下新建一个子目录video，用于单文件下载，随时清空目录。
+
+在 download_ytb.pl 中配置 $host, $web_dir, $web_path
+
+    perl download_ytb.pl [playlist_url] [end_item] [start_item=1]
+
+    #本地PC下载，需配置ansible
+    $ apt-get install ansible wget
+    $ perl download_ytb.pl 'https://www.youtube.com/playlist?list=PLtww_vcpAB8roMoQ7xMF1lN4y1C87PaaZ' 50
