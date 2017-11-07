@@ -1,24 +1,32 @@
 #!/usr/bin/perl
-use File::Slurp qw/slurp write_file/;
 
-my ($web_path, $mp4_path)  = @ARGV;
-$web_path=~s#/$##;
+my ($mp4_path)  = @ARGV;
+$mp4_path ||= 'data';
 
-system(qq[find "$mp4_path" -name '*.mp4' -exec rename 's/\\s+/-/g' {} \\;]);
-system(qq[find "$mp4_path" -name '*.mp4' | sort | sed -e 's#^#$web_path/#' > "$mp4_path/video.m3u"]);
+system(qq[find "$mp4_path" -type f -exec rename 's/\\s+/-/g' {} \\;]);
 
-print "$web_path/$mp4_path/video.m3u\n";
-
+my $c=`find "$mp4_path" -type f | sort`;
 my @fc = map {
 my $n=$_;
 $n=~s#^.*/##;
 qq[<li><a target="_blank" href="$_">$n</a></li>];
 }
-split /\n/,slurp("$mp4_path/video.m3u");
+split /\n/, $c;
 my $fs = join("\n", @fc);
-my $s = slurp("video.t");
-$s=~s/\[% video_list %\]/$fs/s;
-write_file("$mp4_path/video.html", $s);
 
-
-print "$web_path/$mp4_path/video.html\n";
+open my $fh,'>', "video.html";
+print $fh <<__DATA__;
+<html>
+<head>
+	<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+</head>
+<body>
+	<div>
+	<ul id="video_list">
+    $fs
+	<ul>
+	</div>
+</body>
+</html>
+__DATA__
+close $fh;

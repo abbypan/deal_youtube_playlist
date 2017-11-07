@@ -1,12 +1,11 @@
 # deal_youtube_playlist
-批量下载youtube播放列表内容，并生成m3u/html播放列表
+批量下载youtube播放列表内容，并生成html播放列表
 
 以vps环境为例，debian系统。
 
 # 安装
 
-    $ apt-get install youtube-dl cpanminus
-    $ cpanm File::Slurp
+    $ apt-get install youtube-dl
 
 # 例子
 
@@ -23,19 +22,10 @@
     $ youtube-dl "https://www.youtube.com/playlist?list=PLF861C755FB66AC6A" -f mp4
     $ rename 's/^\d\d\./0$&/' *.mp4
     $ cd ..
-    $ perl gen_video_list.pl https://foo.xxx.com/ data
-    https://foo.xxx.com/data/video.m3u
-    https://foo.xxx.com/data/video.html
+    $ perl gen_video_list.pl data
+    https://foo.xxx.com/video.html
 
-此时，本地可使用浏览器访问 https://foo.xxx.com/data/video.html ，或者用vlc访问 https://foo.xxx.com/data/video.m3u
-
-示例文件: [video.html](data/video.html), [video.m3u](data/video.m3u)
-
-## 下载视频到本地PC 
-
-    #本地PC
-    $ wget https://foo.xxx.com/data/video.m3u
-    $ cat video.m3u | xargs wget
+此时，本地可使用浏览器访问 https://foo.xxx.com/video.html
 
 ## 按顺序单文件下载列表中所有视频到本地
 
